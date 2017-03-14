@@ -21,10 +21,25 @@ import java.sql.Connection;
  * @author Clinton Begin
  */
 public enum TransactionIsolationLevel {
+  /**
+   *
+   */
   NONE(Connection.TRANSACTION_NONE),
-  READ_COMMITTED(Connection.TRANSACTION_READ_COMMITTED),
+  /**
+   * 可读到未提交数据
+   */
   READ_UNCOMMITTED(Connection.TRANSACTION_READ_UNCOMMITTED),
+  /**
+   * 可读到已提交数据
+   */
+  READ_COMMITTED(Connection.TRANSACTION_READ_COMMITTED),
+  /**
+   * 可重复读，即读操作时，不允许update(行级锁)
+   */
   REPEATABLE_READ(Connection.TRANSACTION_REPEATABLE_READ),
+  /**
+   * 数据库指令顺序执行，效率极低(表级锁)
+   */
   SERIALIZABLE(Connection.TRANSACTION_SERIALIZABLE);
 
   private final int level;
